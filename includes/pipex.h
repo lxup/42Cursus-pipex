@@ -17,6 +17,7 @@ typedef struct s_pipex
 {
     int		fd_in;
     int		fd_out;
+    int     here_doc;
     t_list	*cmds;   
 }   t_pipex;
 
@@ -28,7 +29,7 @@ typedef struct s_pipexcmd
 
 
 void    ft_error(char *param, int error);
-t_pipex	*ft_init_pipex(int ac, char **av);
+t_pipex *ft_init_pipex(int ac, char **av, int here_doc);
 
 
 #endif
