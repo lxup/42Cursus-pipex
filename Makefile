@@ -1,10 +1,25 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: lquehec <lquehec@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/11/23 22:09:56 by lquehec           #+#    #+#              #
+#    Updated: 2023/11/23 22:09:57 by lquehec          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 # DIR
 SRC_DIR	= ./src/
 HEADER_DIR	= ./includes/
 LIBFT_DIR	= ./libft/
 
-SRC			= ft_error.c \
-				main.c \
+SRC			= pipex.c \
+				parsing.c \
+				utils.c \
+				free.c \
+				exit.c \
 
 SRCS		= $(addprefix $(SRC_DIR), $(SRC))
 
