@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lquehec <lquehec@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lquehec <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 22:09:26 by lquehec           #+#    #+#             */
-/*   Updated: 2023/11/23 22:11:50 by lquehec          ###   ########.fr       */
+/*   Updated: 2023/11/24 12:14:50 by lquehec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,9 @@ void	*ft_child_process(t_pipex *pipex_info, t_list *cmd_head, int fd[2], char **
 	close(fd[1]);
 	close(pipex_info->fd_in);
 	close(pipex_info->fd_out);
-	execve(cmd->path, cmd->cmd, envp);
-	return (ft_exit(*cmd->cmd, CMD_FAILED_ERR, pipex_info, NULL));
+	if (execve(cmd->path, cmd->cmd, envp) == -1)
+		return (ft_exit(*cmd->cmd, EXEC_ERR, pipex_info, NULL));
+	return (NULL);
 }
 
 void	*ft_exec(t_pipex *pipex_info, char **envp)
@@ -91,6 +92,8 @@ int	main(int ac, char **av, char **envp)
 		return (*(int *)ft_exit(av[1], NO_FILE, NULL, NULL));
 	if (access(av[1], R_OK) == -1)
 		return (*(int *)ft_exit(av[1], NO_FILE_PERMISSION, NULL, NULL));
+	if (ft_is_edge_case(av[1]))
+		return (*(int *)ft_exit(av[1], EDGE_CASE_ERR, NULL, NULL));
 	pipex_info = ft_init_pipex(ac, av, envp);
 	pipex_info->cmds = ft_parse_cmds(ac, av, pipex_info);
 	ft_exec(pipex_info, envp);

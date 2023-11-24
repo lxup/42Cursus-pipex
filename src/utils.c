@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lquehec <lquehec@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lquehec <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 22:09:35 by lquehec           #+#    #+#             */
-/*   Updated: 2023/11/23 22:10:56 by lquehec          ###   ########.fr       */
+/*   Updated: 2023/11/24 12:26:36 by lquehec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,13 @@ char	*ft_get_env_path(char *str, char **envp)
 		i++;
 	}
 	return (NULL);
+}
+
+int	ft_is_edge_case(char *str)
+{
+	if (ft_strncmp(str, "/dev/urandom", 12) == 0)
+		return (1);
+	if (ft_strncmp(str, "/dev/stdin", 10) == 0)
+		return (1);
+	return (0);
 }

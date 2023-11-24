@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lquehec <lquehec@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lquehec <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 22:10:07 by lquehec           #+#    #+#             */
-/*   Updated: 2023/11/23 22:10:08 by lquehec          ###   ########.fr       */
+/*   Updated: 2023/11/24 12:26:50 by lquehec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ enum e_errors
 	DUP_ERR = -7,
 	PIPE_ERR = -8,
 	FORK_ERR = -9,
-	CMD_FAILED_ERR = -10,
+	EXEC_ERR = -10,
+	EDGE_CASE_ERR = -11,
 };
 
 typedef struct s_pipex
@@ -68,5 +69,6 @@ void		ft_free_cmd(void *content);
 char		*ft_get_env_path(char *str, char **envp);
 t_pipexcmd	*ft_new_cmd(char *path, char **cmd);
 t_list		*ft_lstnew_cmd(char *path, char **cmd);
+int			ft_is_edge_case(char *str);
 
 #endif
