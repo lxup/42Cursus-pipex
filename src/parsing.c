@@ -6,7 +6,7 @@
 /*   By: lquehec <lquehec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 22:09:30 by lquehec           #+#    #+#             */
-/*   Updated: 2023/11/23 22:10:45 by lquehec          ###   ########.fr       */
+/*   Updated: 2023/11/24 15:33:40 by lquehec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,21 @@ t_list	*ft_parse_cmds(int ac, char **av, t_pipex *pipex_info)
 
 	cmds = NULL;
 	path = NULL;
-	i = 2;
-	while (i < ac - 1)
+	i = 1;
+	while (++i < ac - 1)
 	{
 		pipex_info->cmds = cmds;
 		cmd = ft_split(av[i], ' ');
 		if (!cmd || !*cmd)
-			return ((t_list *)ft_exit(NULL, CMD_NOT_FOUND_ERR, pipex_info, &cmd));
+			return ((t_list *)ft_exit(NULL, CMD_NOT_FOUND_ERR,
+					pipex_info, &cmd));
 		cmd_finder = ft_cmd_finder(*cmd, &path, pipex_info);
 		if (cmd_finder == MEMORY_ERR)
 			return ((t_list *)ft_exit(NULL, MEMORY_ERR, pipex_info, &cmd));
 		if (cmd_finder == CMD_NOT_FOUND_ERR)
-			return ((t_list *)ft_exit(*cmd, CMD_NOT_FOUND_ERR, pipex_info, &cmd));
+			return ((t_list *)ft_exit(*cmd, CMD_NOT_FOUND_ERR,
+					pipex_info, &cmd));
 		ft_lstadd_back(&cmds, ft_lstnew_cmd(path, cmd));
-		i++;
 	}
 	return (cmds);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lquehec <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lquehec <lquehec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 22:10:07 by lquehec           #+#    #+#             */
-/*   Updated: 2023/11/24 12:26:50 by lquehec          ###   ########.fr       */
+/*   Updated: 2023/11/24 15:52:39 by lquehec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <sys/wait.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include <stdio.h>
 # include "../libft/libft.h"
 
 // Error handling
@@ -24,10 +23,10 @@ enum e_errors
 {
 	MEMORY_ERR = -1,
 	CMD_NOT_FOUND_ERR = -2,
-	INVALID_ARGS = -3,
-	NO_FILE = -4,
-	NO_FILE_PERMISSION = -5,
-	NO_ENV_PATH = -6,
+	ARGS_ERR = -3,
+	FILE_ERR = -4,
+	F_PERM_ERR = -5,
+	ENV_PATH_ERR = -6,
 	DUP_ERR = -7,
 	PIPE_ERR = -8,
 	FORK_ERR = -9,
@@ -51,6 +50,9 @@ typedef struct s_pipexcmd
 }	t_pipexcmd;
 
 t_pipex		*ft_init_pipex(int ac, char **av, char **envp);
+void		*ft_exec(t_pipex *pipex_info, char **envp);
+void		*ft_child_proc(t_pipex *info,
+				t_list *cmd_head, int fd[2], char **envp);
 
 // PARSING
 int			ft_cmd_finder(char *cmd, char **path, t_pipex *pipex_info);

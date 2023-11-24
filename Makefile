@@ -6,7 +6,7 @@
 #    By: lquehec <lquehec@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/23 22:09:56 by lquehec           #+#    #+#              #
-#    Updated: 2023/11/23 22:09:57 by lquehec          ###   ########.fr        #
+#    Updated: 2023/11/24 15:14:40 by lquehec          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,4 +55,6 @@ fclean:		clean
 
 re:			fclean all
 
-.PHONY: allclean fclean re
+bonus:		all
+
+.PHONY: all clean fclean re bonus
